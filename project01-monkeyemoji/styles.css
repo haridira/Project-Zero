@@ -29,3 +29,7 @@ body {
 .active {
     display: block;
 }
+
+a::after {
+    content: attr(href);
+}
