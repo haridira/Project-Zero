@@ -5,7 +5,7 @@ let data = [
 
     },
     {
-        name: 'Hari',
+        name: 'Marni',
         age: '39',
         
     },
