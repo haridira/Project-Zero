@@ -1,22 +1,47 @@
 
+// the list area
+const todoList = document.getElementById('todo-list');
+
 // initialize and declare our todos list
-let todos = ['Get groceries', 'Wash car', 'Make dinner'];
+const todos = ['Get groceries', 'Wash car', 'Make dinner'];
+
+render();
+
+// the add-button
+const addButton = document.getElementById('add-button');
+const BUTTON_TEXT = 'Add ToDo';
+addButton.innerText = BUTTON_TEXT;
+
+// the todo text-box
+const textbox = document.getElementById('todo-title');
+
+// the status bar
+const statusBar = document.getElementById('status-bar');
+const STATUS_TEXT = '-- updates --';
+statusBar.innerText = STATUS_TEXT;
 
 // the adding function
 function addToDo() {
-    let textbox = document.getElementById('todo-title');
-    let title = textbox.value;
+    const title = textbox.value;
     todos.push(title);
-    console.log(`${title} added!!`);
+    statusBar.innerText = `${title} added!`;
+    render();
+    console.log(`${title} added!`);
+    setTimeout(function(){
+        statusBar.innerText = STATUS_TEXT;
+    }, 3000);
 }
 
 // traverse over the list to create the divs
-todos.forEach(todoTitle => {
-    let element = document.createElement('div');
-    element.innerText = todoTitle;
-    document.body.appendChild(element);
-})
+function render() {
+    document.getElementById('todo-list').innerHTML = '';
 
+    todos.forEach(todoTitle => {
+        const element = document.createElement('div');
+        element.innerText = todoTitle;
+        todoList.appendChild(element);
+    })
+}
 
 /*
 // this section was for an exercise and is not needed anymore (27.09.2022)
