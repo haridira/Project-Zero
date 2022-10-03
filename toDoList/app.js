@@ -2,8 +2,20 @@
 // the list area
 const todoList = document.getElementById('todo-list');
 
+// the date variable
+const datePicker = document.getElementById('date-picker');
+
 // initialize and declare our todos list
-const todos = ['Get groceries', 'Wash car', 'Make dinner'];
+const todos = [{
+    'title': 'Get groceries',
+    'dueDate': '2022-10-03',
+}, {
+    'title': 'Wash car',
+    'dueDate': '2022-01-24',
+}, {
+    'title': 'Make dinner',
+    'dueDate': '2022-06-03'
+}];
 
 render();
 
@@ -22,23 +34,30 @@ statusBar.innerText = STATUS_TEXT;
 
 // the adding function
 function addToDo() {
-    const title = textbox.value;
-    todos.push(title);
-    statusBar.innerText = `${title} added!`;
+    const title = textbox.value;                // get the item name from the input text box
+    const dueDate = datePicker.value;           // get the date from the date input field
+
+                                                // push those values we fetched to the todos object
+    todos.push({
+        title: title,
+        dueDate: dueDate,
+    });
+
+    statusBar.innerText = `${title} added!`;    // status-bar, update
     render();
-    console.log(`${title} added!`);
-    setTimeout(function(){
+    console.log(`${title} added!`);             // update in console
+    setTimeout(function(){                      // status-bar, reset
         statusBar.innerText = STATUS_TEXT;
     }, 3000);
 }
 
-// traverse over the list to create the divs
+                                                // traverse over the list to create the divs
 function render() {
-    document.getElementById('todo-list').innerHTML = '';
+    document.getElementById('todo-list').innerHTML = '';    // reset the list content div
 
-    todos.forEach(todoTitle => {
+    todos.forEach(todo => {
         const element = document.createElement('div');
-        element.innerText = todoTitle;
+        element.innerText = todo.title;
         todoList.appendChild(element);
     })
 }
