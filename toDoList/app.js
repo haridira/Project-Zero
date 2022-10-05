@@ -5,7 +5,7 @@ const todoList = document.getElementById('todo-list');
 // the date variable
 const datePicker = document.getElementById('date-picker');
 
-// initialize and declare our todos list
+// declare and initialize our todos list
 const todos = [{
     'title': 'Get groceries',
     'dueDate': '2022-10-03',
@@ -51,13 +51,25 @@ function addToDo() {
     }, 3000);
 }
 
-                                                // traverse over the list to create the divs
+// delete button function
+function deleteToDo() {
+    console.log('delete me!');
+}
+
+// create the divs and fill them (this function is for display purposes and not actually updating any variables)
 function render() {
     document.getElementById('todo-list').innerHTML = '';    // reset the list content div
 
     todos.forEach(todo => {
-        const element = document.createElement('div');
-        element.innerText = todo.title;
+        const element = document.createElement('div');      // traverse through the list to create and fill the divs
+        element.innerText = todo.title + '..........' + todo.dueDate;
+        
+        const deleteButton = document.createElement('button');
+        deleteButton.innerText = 'Delete';
+        deleteButton.style = 'margin-left: 12px';
+        deleteButton.onclick = deleteToDo;
+        element.appendChild(deleteButton);
+        
         todoList.appendChild(element);
     })
 }
@@ -66,16 +78,6 @@ function render() {
 // this section was for an exercise and is not needed anymore (27.09.2022)
 
 let smalls = ['hello', 'mY', 'Lovely', 'world']
-
-function toUpper(smallLetters) {
-    let bigs = [...smallLetters];
-    bigs.forEach(word => {
-        word = word.toUpperCase();
-        console.log(word);
-    })
-    return bigs;
-}
-
 
 function toUpper(smallLetters) {
     let bigs = [...smallLetters];
