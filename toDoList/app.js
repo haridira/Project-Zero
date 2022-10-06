@@ -7,14 +7,17 @@ const datePicker = document.getElementById('date-picker');
 
 // declare and initialize our todos list
 const todos = [{
-    'title': 'Get groceries',
-    'dueDate': '2022-10-03',
+    title: 'Get groceries',
+    dueDate: '2022-10-03',
+    id: 'id001'
 }, {
-    'title': 'Wash car',
-    'dueDate': '2022-01-24',
+    title: 'Wash car',
+    dueDate: '2022-01-24',
+    id: 'id002'
 }, {
-    'title': 'Make dinner',
-    'dueDate': '2022-06-03'
+    title: 'Make dinner',
+    dueDate: '2022-06-03',
+    id: 'id003'
 }];
 
 render();
@@ -37,14 +40,17 @@ function addToDo() {
     const title = textbox.value;                // get the item name from the input text box
     const dueDate = datePicker.value;           // get the date from the date input field
 
-                                                // push those values we fetched to the todos object
+    const id = new Date().getTime();            // create and fill the id field for this new entry (for now assign it to a temporary variable called id, and THEN we assign that to todos.id)
+
+    // push those values we fetched to the todos object
     todos.push({
         title: title,
         dueDate: dueDate,
+        id: id
     });
 
     statusBar.innerText = `${title} added!`;    // status-bar, update
-    render();
+    render();                                   // after we have already applied all the changes we want to the database, we "render" to update the view
     console.log(`${title} added!`);             // update in console
     setTimeout(function(){                      // status-bar, reset
         statusBar.innerText = STATUS_TEXT;
@@ -52,42 +58,29 @@ function addToDo() {
 }
 
 // delete button function
-function deleteToDo() {
-    console.log('delete me!');
+function deleteToDo(event) {
+    console.log('delete me!');                                      // for testing only and can be safely deleted any time
+    const deleteButton = event.target;
+    const idToDelete = deleteButton.id;
+
+    todos.filter();
 }
 
 // create the divs and fill them (this function is for display purposes and not actually updating any variables)
 function render() {
-    document.getElementById('todo-list').innerHTML = '';    // reset the list content div
+    document.getElementById('todo-list').innerHTML = '';            // reset the list content div
 
-    todos.forEach(todo => {
-        const element = document.createElement('div');      // traverse through the list to create and fill the divs
-        element.innerText = todo.title + '..........' + todo.dueDate;
+    todos.forEach(todo => {                                         // traverse through the list to create and fill the divs
+        const element = document.createElement('div');
+        element.innerText = todo.title + '......' + todo.dueDate;   // add the todo title + some padding (dots) + the due date to the line div
         
-        const deleteButton = document.createElement('button');
-        deleteButton.innerText = 'Delete';
-        deleteButton.style = 'margin-left: 12px';
-        deleteButton.onclick = deleteToDo;
-        element.appendChild(deleteButton);
+        const deleteButton = document.createElement('button');      // create the delete button
+        deleteButton.innerText = 'Delete';                          // .. and fill it with text
+        deleteButton.style = 'margin-left: 12px';                   // .. give it some padding (left margin)
+        deleteButton.onclick = deleteToDo;                          // call the deleteToDo function
+        deleteButton.id = todo.id;                                  // assign the delete button its id (we have already added an id in the database - now time to assign the same to the button HTML id so the two are linked together this way)
+        element.appendChild(deleteButton);                          // add the button to the line div
         
-        todoList.appendChild(element);
+        todoList.appendChild(element);                              // actually add the line div to the bigger todoList div
     })
 }
-
-/*
-// this section was for an exercise and is not needed anymore (27.09.2022)
-
-let smalls = ['hello', 'mY', 'Lovely', 'world']
-
-function toUpper(smallLetters) {
-    let bigs = [...smallLetters];
-    for (let i = 0; i < bigs.length; i++) {
-        bigs[i] = bigs[i].toUpperCase();
-        console.log(bigs[i]);
-    }
-    return bigs;
-}
-
-bigs = toUpper(smalls);
-console.log(bigs);
-// */
