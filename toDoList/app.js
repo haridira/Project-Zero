@@ -2,32 +2,37 @@
 
 // === Model Section: Initial Data ===
 
-// declare and initialize our todos list
+// declare and initialize our default TODOS list
+const TODOS = [{
+    title: 'Get groceries',
+    dueDate: '2022-10-03',
+    id: 'id001'
+}, {
+    title: 'Wash car',
+    dueDate: '2022-01-24',
+    id: 'id002'
+}, {
+    title: 'Make dinner',
+    dueDate: '2022-06-03',
+    id: 'id003'
+}];
 
+// initialize (but do not declare yet) our todos
 let todos;
 
-const savedTodos = JSON.parse(localStorage.getItem('todos'));
 
-if (Array.isArray(savedTodos)) {
-    todos = savedTodos;
-} else {
-    todos = [{
-        title: 'Get groceries',
-        dueDate: '2022-10-03',
-        id: 'id001'
-    }, {
-        title: 'Wash car',
-        dueDate: '2022-01-24',
-        id: 'id002'
-    }, {
-        title: 'Make dinner',
-        dueDate: '2022-06-03',
-        id: 'id003'
-    }];
+// === Reset Data ===
+
+function resetTodos() {
+    todos = TODOS;
+
+    saveTodos();
+
+    console.log('Todos reset to:');                   // TEMP for testing
+    console.log(todos);
 }
 
-
-// === Model Section: Create Data ===
+// === Create Data ===
 
 function createTodo(title, dueDate) {
     const id = '' + new Date().getTime();            // create and fill the id field for this new entry (for now assign it to a temporary variable called id, and THEN we assign that to todos.id)
@@ -43,7 +48,7 @@ function createTodo(title, dueDate) {
 }
 
 
-// === Model Section: Delete Data ===
+// === Delete Data ===
 
 function removeTodo(idToDelete) {
     /*
@@ -66,10 +71,24 @@ function removeTodo(idToDelete) {
     saveTodos();
 }
 
-// === The Save and Retreive Data Section ===
+// === Save and Retreive Data===
 
 function saveTodos() {
     localStorage.setItem('todos', JSON.stringify(todos));
+}
+
+
+function loadTodos() {
+    // load the saved JSON file and convert it back into an object
+    // do not update the todos yet, however - for now just save it to a variable
+    const savedTodos = JSON.parse(localStorage.getItem('todos'));
+
+    // check the loaded saved object whether it is indeed an array before updating the data: todos
+    if (Array.isArray(savedTodos)) {
+        todos = savedTodos;
+    } else {
+        todos = TODOS;
+    }
 }
 
 // == VIEW SECTION ==
@@ -92,6 +111,7 @@ statusBar.innerText = STATUS_TEXT;
 function render() {
     document.getElementById('todo-list').innerHTML = '';            // reset the list content div
 
+    loadTodos();
     todos.forEach(todo => {                                         // traverse through the list to create and fill the divs
         const element = document.createElement('div');
         element.innerText = todo.title + '......' + todo.dueDate;   // add the todo title + some padding (dots) + the due date to the line div
@@ -111,6 +131,12 @@ function render() {
 
 
 // == CONTROLLER SECTION ==
+
+// the reset function
+function resetOnClick() {
+    resetTodos();
+    render();
+}
 
 // the add function
 function addToDo() {
@@ -137,8 +163,21 @@ function deleteToDo(event) {
 
     console.log(`Entry with ID # ${idToDelete} deleted!`);                           // for testing only and can be safely deleted any time
 
+    // get the element that was deleted and save it into a variable
+    let deletedTodo = todos.filter(item => {
+        return item.id === idToDelete;
+    });
+    console.log(deletedTodo[0]);
+
+
     removeTodo(idToDelete);
 
     // after we have assigned the true and false values, we render the list again
     render();
+
+    // update the status bar
+    statusBar.innerText = `"${deletedTodo[0].title}" deleted!`;
+    setTimeout(() => {
+       statusBar.innerText = STATUS_TEXT; 
+    }, 3000);
 }
