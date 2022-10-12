@@ -20,6 +20,9 @@ const TODOS = [{
 // initialize (but do not declare yet) our todos
 let todos;
 
+// update status category
+const statusCats = ['description', 'add', 'delete', 'reset'];
+const statusSelected = statusCats[0];
 
 // === Reset Data ===
 
@@ -27,9 +30,6 @@ function resetTodos() {
     todos = TODOS;
 
     saveTodos();
-
-    console.log('Todos reset to:');                   // TEMP for testing
-    console.log(todos);
 }
 
 // === Create Data ===
@@ -103,7 +103,7 @@ addButton.innerText = BUTTON_TEXT;
 
 // the status bar
 const statusBar = document.getElementById('status-bar');
-const STATUS_TEXT = '-- updates --';
+const STATUS_TEXT = '-- Updates --';
 statusBar.innerText = STATUS_TEXT;
 
 // === The Render function, which includes creating new divs ===
@@ -129,7 +129,35 @@ function render() {
     })
 }
 
+// shortly display short-lived update
+function displayShortLivedUpdate(statusSelected, titleAdded) {
+    updateStatus(statusSelected, titleAdded);
 
+    statusSelected = statusCats[0];
+    setTimeout(() => {
+        updateStatus(statusSelected, titleAdded); 
+     }, 3000);
+}
+
+// update status bar based on selected status
+function updateStatus(statusSelected, titleAdded) {
+    if (statusSelected === statusCats[0]) {                 // default (display "Updates" in the field)
+        statusBar.innerText = STATUS_TEXT;
+    } else if (statusSelected === statusCats[1]) {          // add
+        statusBar.innerText = `"${titleAdded}" added!`;
+    } else if (statusSelected === statusCats[2]) {          // delete
+        statusBar.innerText = `"${titleAdded}" deleted!`;
+    } else if (statusSelected === statusCats[3]) {          // reset
+        statusBar.innerText = 'To-do list reset!';
+    } else {
+        statusBar.innerText = 'Unexpected!';
+    }
+}
+
+function cleanTextBox() {
+    const textbox = document.getElementById('todo-title');
+    textbox.value = '';
+}
 
 // == CONTROLLER SECTION ==
 
@@ -137,6 +165,8 @@ function render() {
 function resetOnClick() {
     resetTodos();
     render();
+
+    displayShortLivedUpdate(statusCats[3]);
 }
 
 // the add function
@@ -149,12 +179,11 @@ function addToDo() {
 
     createTodo(title, dueDate);
 
-    statusBar.innerText = `${title} added!`;    // status-bar, update
     render();                                   // after we have already applied all the changes we want to the database, we "render" to update the view
     console.log(`${title} added!`);             // update in console
-    setTimeout(function(){                      // status-bar, reset
-        statusBar.innerText = STATUS_TEXT;
-    }, 3000);
+    displayShortLivedUpdate(statusCats[1], title);
+
+    cleanTextBox();
 }
 
 // delete button function
@@ -164,21 +193,17 @@ function deleteToDo(event) {
 
     console.log(`Entry with ID # ${idToDelete} deleted!`);                           // for testing only and can be safely deleted any time
 
-    // get the element that was deleted and save it into a variable
+    // get the element that WAS deleted and save it into a variable; we're doing this to use it in notifications
     let deletedTodo = todos.filter(item => {
         return item.id === idToDelete;
     });
-    console.log(deletedTodo[0]);
-
+    console.log(`"${deletedTodo[0].title}" deleted!`);
+    displayShortLivedUpdate(statusCats[2], deletedTodo[0].title);
 
     removeTodo(idToDelete);
 
     // after we have assigned the true and false values, we render the list again
     render();
 
-    // update the status bar
-    statusBar.innerText = `"${deletedTodo[0].title}" deleted!`;
-    setTimeout(() => {
-       statusBar.innerText = STATUS_TEXT; 
-    }, 3000);
+    cleanTextBox();
 }

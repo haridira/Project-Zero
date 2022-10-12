@@ -34,13 +34,15 @@ body {
     font-size: 16px;
     border-radius: 22px;
 
-    transition-duration: 0.6s;
+    transition-duration: 0.3s;
   }
 
   .button:hover {
     background-color: #ee9f99;
     color: #ffffff;
-    size-adjust: 200%;
+    padding: 9px 20px;
+    margin: 5px;
+
   }
 
 #control-panel {
@@ -54,4 +56,31 @@ body {
     padding: none;
     display: inline-block;
     border: 5px solid #fff;
+}
+
+#status-bar {
+    background-color: #f44336;
+    color: white;    
+    margin: auto;
+    width: 300px;
+
+    padding: 3px 12px;
+
+    text-align: center;
+    text-decoration: none;
+    
+    
+    border: none;
+    font-weight: normal;
+    font-size: 12px;
+    border-radius: 3px;
+
+    transition-duration: 0.3s;
+}
+
+.center {
+    margin: auto;
+    width: 100%;
+    border: 0px solid transparent;
+    padding: 0px;
 }
