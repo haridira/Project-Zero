@@ -118,6 +118,7 @@ function render() {
         
         const deleteButton = document.createElement('button');      // create the delete button
         deleteButton.innerText = 'Delete';                          // .. and fill it with text
+        deleteButton.className = "button";                          // assign to button class
         deleteButton.style = 'margin-left: 12px';                   // .. give it some padding (left margin)
         deleteButton.onclick = deleteToDo;                          // call the deleteToDo function
         deleteButton.id = todo.id;                                  // assign the delete button its id (we have already added an id in the database - now time to assign the same to the button HTML id so the two can be linked together this way)

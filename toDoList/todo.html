@@ -5,17 +5,31 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>My To Do Web Page</title>
+
+    <link href="styles.css" rel="stylesheet" />
   </head>
   <body>
-    <p><em>A work-in-progress as of mid October (functionality already completed; next step is to stylize the page)</em></p>
-    <input id="todo-title" type="text" />
-    <input id="date-picker" type="date">
-    <button id="add-button" onclick="addToDo()">Add ToDo</button>
-    <button id="reset-button" onclick="resetOnClick()">Reset</button>
-    <br />
-    <div id="status-bar"></div>
+    <div id="control-panel">
+      <p>
+        <em
+          >A work-in-progress as of mid October (functionality already
+          completed; next step is to stylize the page)</em
+        >
+      </p>
+      <input id="todo-title" type="text" />
+      <input id="date-picker" type="date" />
+      <button id="add-button" class="button" onclick="addToDo()">
+        Add ToDo
+      </button>
+      <button id="reset-button" class="button" onclick="resetOnClick()">
+        Reset
+      </button>
+      <br />
+      <div id="status-bar"></div>
+    </div>
     <br />
     <div id="todo-list"></div>
+
     <script src="app.js"></script>
   </body>
 </html>
