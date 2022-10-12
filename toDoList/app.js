@@ -4,15 +4,15 @@
 
 // declare and initialize our default TODOS list
 const TODOS = [{
-    title: 'Get groceries',
+    title: 'Watch Better Call Saul with Babe',
     dueDate: '2022-10-03',
     id: 'id001'
 }, {
-    title: 'Wash car',
+    title: 'Get your groceries from the Dollar Store',
     dueDate: '2022-01-24',
     id: 'id002'
 }, {
-    title: 'Make dinner',
+    title: 'Bachata practice',
     dueDate: '2022-06-03',
     id: 'id003'
 }];
