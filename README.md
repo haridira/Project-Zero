@@ -8,4 +8,4 @@ The next step (target date being the end of November), the main projects here ar
 
 ## Visit My Playground Website
 You can check out my playground website on the following
-[link](https://haridira.github.io/project-zero/).
+[link](https://haridira.github.io/portfolio/).
