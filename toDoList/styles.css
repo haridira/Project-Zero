@@ -37,7 +37,7 @@ body {
     transition-duration: 0.3s;
   }
 
-  .button:hover {
+.button:hover {
     background-color: #f81b0b;
     color: #ffffff;
     padding: 9px 20px;
@@ -49,7 +49,7 @@ body {
     padding: 5px;
     display: inline-block;
     border: 5px solid;
-    border-color: rgb(37, 37, 37);
+    border-color: rgb(48, 48, 48);
 }
 
 #todo-list {
@@ -83,4 +83,9 @@ body {
     width: 100%;
     border: 0px solid transparent;
     padding: 0px;
+}
+
+.tcell {
+    padding: 3px 22px;
+    background-color: rgb(250, 240, 236);
 }

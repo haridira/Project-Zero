@@ -117,14 +117,17 @@ function render() {
         row = document.createElement('tr');                         // create a new row
 
         const col1 = document.createElement('td');                  // create a col-1 cell
+        col1.className = "tcell";
         row.appendChild(col1);
         col1.innerText = todo.title;                                // todo title i ncell
         
         const col2 = document.createElement('td');                  // col-2 cell
+        col2.className = "tcell";
         row.appendChild(col2);
         col2.innerText = todo.dueDate;                              // due date in cell
 
         const col3 = document.createElement('td');                  // col-3 cell for the delete button
+        col3.className = "tcell";
         row.appendChild(col3);
 
         const deleteButton = document.createElement('button');      // create the delete button
