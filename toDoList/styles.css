@@ -45,13 +45,6 @@ body {
 
   }
 
-#control-panel {
-    padding: 5px;
-    display: inline-block;
-    border: 5px solid;
-    border-color: rgb(48, 48, 48);
-}
-
 #todo-list {
     padding: none;
     display: inline-block;
@@ -62,7 +55,7 @@ body {
     background-color: #f44336;
     color: white;    
     margin: auto;
-    width: 300px;
+    width: 400px;
 
     padding: 3px 12px;
 
@@ -87,5 +80,24 @@ body {
 
 .tcell {
     padding: 3px 22px;
-    background-color: rgb(250, 240, 236);
+    background-color: rgb(48, 48, 48);
+}
+
+#todo-list {
+    width: 810px;
+    padding: 0px;
+}
+
+.table-class {
+    width: 100%;
+    background-color: #ffffff;
+    color: #fff;
+}
+
+.main-container {
+    width: 800px;
+    padding: 5px;
+    display: inline-block;
+    border: 5px solid;
+    border-color: rgb(48, 48, 48);
 }

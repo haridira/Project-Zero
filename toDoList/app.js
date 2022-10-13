@@ -118,6 +118,7 @@ function render() {
 
         const col1 = document.createElement('td');                  // create a col-1 cell
         col1.className = "tcell";
+        col1.style = "width: 60%";
         row.appendChild(col1);
         col1.innerText = todo.title;                                // todo title i ncell
         
@@ -136,7 +137,7 @@ function render() {
         //deleteButton.style = 'margin-left: 12px';                 // .. give it some padding (left margin) (COMMENTED OUT because I'm now using table format)
         deleteButton.onclick = deleteToDo;                          // call the deleteToDo function
         deleteButton.id = todo.id;                                  // assign the delete button its id (we have already added an id in the database - now time to assign the same to the button HTML id so the two can be linked together this way)
-        col3.appendChild(deleteButton);                          // add the button to the line div
+        col3.appendChild(deleteButton);                             // add the button to the line div
 
         const todoList = document.getElementById('table');
         todoList.appendChild(row);                              // actually add the line div to the bigger todoList div
