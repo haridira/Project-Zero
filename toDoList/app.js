@@ -109,23 +109,34 @@ statusBar.innerText = STATUS_TEXT;
 // === The Render function, which includes creating new divs ===
 // create the divs and fill them (this function is for display purposes and not actually updating any variables)
 function render() {
-    document.getElementById('todo-list').innerHTML = '';            // reset the list content div
+    document.getElementById('table').innerHTML = '';            // reset the list content div
 
     loadTodos();
     todos.forEach(todo => {                                         // traverse through the list to create and fill the divs
-        const element = document.createElement('div');
-        element.innerText = todo.title + '......' + todo.dueDate;   // add the todo title + some padding (dots) + the due date to the line div
         
+        row = document.createElement('tr');                         // create a new row
+
+        const col1 = document.createElement('td');                  // create a col-1 cell
+        row.appendChild(col1);
+        col1.innerText = todo.title;                                // todo title i ncell
+        
+        const col2 = document.createElement('td');                  // col-2 cell
+        row.appendChild(col2);
+        col2.innerText = todo.dueDate;                              // due date in cell
+
+        const col3 = document.createElement('td');                  // col-3 cell for the delete button
+        row.appendChild(col3);
+
         const deleteButton = document.createElement('button');      // create the delete button
         deleteButton.innerText = 'Delete';                          // .. and fill it with text
         deleteButton.className = "button";                          // assign to button class
-        deleteButton.style = 'margin-left: 12px';                   // .. give it some padding (left margin)
+        //deleteButton.style = 'margin-left: 12px';                 // .. give it some padding (left margin) (COMMENTED OUT because I'm now using table format)
         deleteButton.onclick = deleteToDo;                          // call the deleteToDo function
         deleteButton.id = todo.id;                                  // assign the delete button its id (we have already added an id in the database - now time to assign the same to the button HTML id so the two can be linked together this way)
-        element.appendChild(deleteButton);                          // add the button to the line div
+        col3.appendChild(deleteButton);                          // add the button to the line div
 
-        const todoList = document.getElementById('todo-list');
-        todoList.appendChild(element);                              // actually add the line div to the bigger todoList div
+        const todoList = document.getElementById('table');
+        todoList.appendChild(row);                              // actually add the line div to the bigger todoList div
     })
 }
 
