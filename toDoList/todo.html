@@ -16,12 +16,30 @@
   </head>
   <body>
     <div id="control-panel" class="main-container">
-      <p>
-        <em
-          ><center>A work-in-progress as of mid October (functionality already
-          completed; next step is to stylize the page)</center></em
+      <h1>ListMe!</h1>
+      <br />
+      <div class="tooltip" style="color: rgb(31, 31, 31);">
+        What's listMe!?
+        <span class="tooltiptext"
+          >listMe! is a light online app where you can create your todo list on
+          the fly. It starts with some sample tasks which you can clear and
+          replace with your own. Your browser will remember your list for
+          you—even if you have closed the browser or shut down your PC—so you
+          can continue form where you left off!</span
         >
-      </p>
+      </div>
+      <!--
+        <p>
+          <em
+            >listMe! is a light online app where you can create your todo list
+            on the fly. It starts with some sample tasks which you can clear and
+            replace with your own. Your browser will remember your list for
+            you—even if you have closed the browser or shut down your PC— so
+            you can continue form where you left off!</em
+          >
+        </p>
+      -->
+      <br />
       <input id="todo-title" type="text" />
       <input id="date-picker" type="date" />
       <button id="add-button" class="button" onclick="addToDo()">
@@ -40,6 +58,5 @@
     <div id="todo-list"><table id="table" class="table-class"></table></div>
 
     <script src="app.js"></script>
-
   </body>
 </html>

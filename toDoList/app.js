@@ -109,7 +109,7 @@ statusBar.innerText = STATUS_TEXT;
 // === The Render function, which includes creating new divs ===
 // create the divs and fill them (this function is for display purposes and not actually updating any variables)
 function render() {
-    document.getElementById('table').innerHTML = '';            // reset the list content div
+    document.getElementById('table').innerHTML = '';                // reset the list content div
 
     loadTodos();
     todos.forEach(todo => {                                         // traverse through the list to create and fill the divs
@@ -120,7 +120,7 @@ function render() {
         col1.className = "tcell";
         col1.style = "width: 60%";
         row.appendChild(col1);
-        col1.innerText = todo.title;                                // todo title i ncell
+        col1.innerText = todo.title;                                // todo title in cell
         
         const col2 = document.createElement('td');                  // col-2 cell
         col2.className = "tcell";
@@ -140,7 +140,7 @@ function render() {
         col3.appendChild(deleteButton);                             // add the button to the line div
 
         const todoList = document.getElementById('table');
-        todoList.appendChild(row);                              // actually add the line div to the bigger todoList div
+        todoList.appendChild(row);                                  // append the row to the table
     })
 }
 
@@ -169,7 +169,7 @@ function updateStatus(statusSelected, titleAdded) {
     }
 }
 
-function cleanTextBox() {
+function clearTextBox() {
     const textbox = document.getElementById('todo-title');
     textbox.value = '';
 }
@@ -198,7 +198,7 @@ function addToDo() {
     console.log(`${title} added!`);             // update in console
     displayShortLivedUpdate(statusCats[1], title);
 
-    cleanTextBox();
+    clearTextBox();
 }
 
 // delete button function
@@ -206,19 +206,19 @@ function deleteToDo(event) {
     const deleteButton = event.target;
     const idToDelete = deleteButton.id;
 
-    console.log(`Entry with ID # ${idToDelete} deleted!`);                           // for testing only and can be safely deleted any time
+    console.log(`Entry with ID # ${idToDelete} deleted!`);                         // for testing only and can be safely deleted any time
 
     // get the element that WAS deleted and save it into a variable; we're doing this to use it in notifications
     let deletedTodo = todos.filter(item => {
         return item.id === idToDelete;
     });
-    console.log(`"${deletedTodo[0].title}" deleted!`);
+    console.log(`"${deletedTodo[0].title}" deleted!`);                              // for testing only and can be safely deleted any time
     displayShortLivedUpdate(statusCats[2], deletedTodo[0].title);
 
     removeTodo(idToDelete);
 
-    // after we have assigned the true and false values, we render the list again
+    // after we have returned only the "true" values through the filter (i.e. not deleted) and thus updated our todos list, we render the list again
     render();
 
-    cleanTextBox();
+    clearTextBox();
 }

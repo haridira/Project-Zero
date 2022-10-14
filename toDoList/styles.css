@@ -18,6 +18,10 @@ body {
 }
 
 
+h1 {
+    text-align: center;
+}
+
 .button {
     background-color: #f44336;
     color: white;    
@@ -34,15 +38,14 @@ body {
     font-size: 16px;
     border-radius: 22px;
 
-    transition-duration: 0.3s;
+    transition-duration: 0.2s;
   }
 
 .button:hover {
     background-color: #f81b0b;
     color: #ffffff;
-    padding: 9px 20px;
-    margin: 5px;
-
+    
+    transform: scale(1.1);
   }
 
 #todo-list {
@@ -101,3 +104,30 @@ body {
     border: 5px solid;
     border-color: rgb(48, 48, 48);
 }
+
+
+
+/* tooltip section */
+.tooltip {
+    position: relative;
+    display: inline-block;
+    border-bottom: 1px dotted black;
+  }
+  
+  .tooltip .tooltiptext {
+    visibility: hidden;
+    width: 320px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 5px;
+  
+    /* position the tooltip */
+    position: absolute;
+    z-index: 1;
+  }
+  
+  .tooltip:hover .tooltiptext {
+    visibility: visible;
+  }
