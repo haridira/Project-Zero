@@ -4,7 +4,7 @@
 
 // declare and initialize our default TODOS list
 const TODOS = [{
-    title: 'Better Call Saul with Babe',
+    title: 'Better Call Saul with GF',
     dueDate: '2022-10-03',
     id: 'id001'
 }, {
@@ -12,7 +12,7 @@ const TODOS = [{
     dueDate: '2022-01-24',
     id: 'id002'
 }, {
-    title: 'Bachata practice',
+    title: 'Salsa practice',
     dueDate: '2022-06-03',
     id: 'id003'
 }];
@@ -21,13 +21,21 @@ const TODOS = [{
 let todos;
 
 // update status category
-const statusCats = ['description', 'add', 'delete', 'reset'];
+const statusCats = ['description', 'add', 'delete', 'reset', 'clear'];
 const statusSelected = statusCats[0];
 
 // === Reset Data ===
 
 function resetTodos() {
     todos = TODOS;
+
+    saveTodos();
+}
+
+// === Clear List ===
+
+function clearList() {
+    todos = [];
 
     saveTodos();
 }
@@ -164,7 +172,9 @@ function updateStatus(statusSelected, titleAdded) {
         statusBar.innerText = `"${titleAdded}" deleted!`;
     } else if (statusSelected === statusCats[3]) {          // reset
         statusBar.innerText = 'To-do list reset to original samples!';
-    } else {
+    } else if (statusSelected === statusCats[4]) {          // clear
+        statusBar.innerText = 'To-do list cleared!';
+    } else {                                                // exception
         statusBar.innerText = 'Unexpected!';
     }
 }
@@ -182,6 +192,14 @@ function resetOnClick() {
     render();
 
     displayShortLivedUpdate(statusCats[3]);
+}
+
+// the clear function
+function clearOnClick() {
+    clearList();
+    render();
+
+    displayShortLivedUpdate(statusCats[4]);
 }
 
 // the add function
