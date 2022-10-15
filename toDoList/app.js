@@ -163,7 +163,7 @@ function updateStatus(statusSelected, titleAdded) {
     } else if (statusSelected === statusCats[2]) {          // delete
         statusBar.innerText = `"${titleAdded}" deleted!`;
     } else if (statusSelected === statusCats[3]) {          // reset
-        statusBar.innerText = 'To-do list reset!';
+        statusBar.innerText = 'To-do list reset to original samples!';
     } else {
         statusBar.innerText = 'Unexpected!';
     }
