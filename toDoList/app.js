@@ -106,7 +106,7 @@ render();                                                           // render at
 
 // the add-button
 const addButton = document.getElementById('add-button');
-const BUTTON_TEXT = 'Add ToDo';                                     // create a JS variable for the button text and fill the button with it
+const BUTTON_TEXT = 'Add To-Do';                                     // create a JS variable for the button text and fill the button with it
 addButton.innerText = BUTTON_TEXT;
 
 // the status bar
