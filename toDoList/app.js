@@ -2,6 +2,12 @@
 
 // === Model Section: Initial Data ===
 
+// some constants
+const STATUS_TEXT = '-- Updates --';
+const HEADER1_TEXT = 'To-Do';
+const HEADER2_TEXT = 'Due Date';
+const HEADER3_TEXT = 'Remove';
+
 // declare and initialize our default TODOS list
 const TODOS = [{
     title: 'Better Call Saul with GF',
@@ -54,7 +60,6 @@ function createTodo(title, dueDate) {
 
     saveTodos();
 }
-
 
 // === Delete Data ===
 
@@ -111,13 +116,36 @@ addButton.innerText = BUTTON_TEXT;
 
 // the status bar
 const statusBar = document.getElementById('status-bar');
-const STATUS_TEXT = '-- Updates --';
 statusBar.innerText = STATUS_TEXT;
 
 // === The Render function, which includes creating new divs ===
 // create the divs and fill them (this function is for display purposes and not actually updating any variables)
 function render() {
     document.getElementById('table').innerHTML = '';                // reset the list content div
+
+
+    tableHead = document.createElement('thead');                    // the first row section (that's why we do it BEFORE the loop)
+    firstRow = document.createElement('tr');
+    
+    header1 = document.createElement('th');
+    header1.className = "thead";
+    header1.innerText = HEADER1_TEXT;
+    header1.style = "width: 65%";
+    firstRow.appendChild(header1);
+
+    header2 = document.createElement('th');
+    header2.className = "thead";
+    header2.innerText = HEADER2_TEXT;
+    header2.style = "width: 17%";
+    firstRow.appendChild(header2);
+
+    header3 = document.createElement('th');
+    header3.className = "thead";
+    header3.innerText = HEADER3_TEXT;
+    firstRow.appendChild(header3);
+
+    const todoList = document.getElementById('table');
+    todoList.appendChild(firstRow);
 
     loadTodos();
     todos.forEach(todo => {                                         // traverse through the list to create and fill the divs
@@ -126,7 +154,6 @@ function render() {
 
         const col1 = document.createElement('td');                  // create a col-1 cell
         col1.className = "tcell";
-        col1.style = "width: 60%";
         row.appendChild(col1);
         col1.innerText = todo.title;                                // todo title in cell
         
