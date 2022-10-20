@@ -142,6 +142,7 @@ function render() {
     header3 = document.createElement('th');
     header3.className = "thead";
     header3.innerText = HEADER3_TEXT;
+    header3.style = "width: 18%";
     firstRow.appendChild(header3);
 
     const todoList = document.getElementById('table');
