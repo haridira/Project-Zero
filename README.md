@@ -4,4 +4,4 @@ This is where you can find selections of my portfolio for you under a one-stop, 
 
 Link:
 
-(https://haridira.github.io/portfolio/)]https://haridira.github.io/portfolio/
+[(https://haridira.github.io/portfolio/)]
