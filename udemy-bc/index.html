@@ -5,36 +5,115 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>My Udemy Playground</title>
+
+    <link rel="stylesheet" href="styles.css" />
   </head>
 
   <body>
-    <a href="../BST/22-10-MyResume/assets/img/profile-img.jpg">
-      <img
-        src="../BST/22-10-MyResume/assets/img/profile-img.jpg"
-        alt="OMG! Where is my damn picture!"
-        style="border-radius: 50%; max-width: 15%; height: auto"
-      />
-    </a>
-    <h1>This is My Udemy Playground</h1>
-    <br />
-    <em
-      >Creator of the
-      <a
-        href="https://store.steampowered.com/app/1095700/Joyfess_Ep1_Martins_Secret_Recipe/"
-        target="_blank"
-        >Joyfess Game</a
-      ></em
-    >
-    <br />
-    <p>
-      <strong style="color: rgb(70, 21, 2)">Dark chocolate</strong> is my
-      weakness ❤️
-    </p>
-    <br />
+    <div id="header" style="display: flex">
+      <!-- == BEG :  Header Image == -->
+      <div id="header-image" style="display: block; max-width: 10%">
+        <a href="../BST/22-10-MyResume/assets/img/profile-img.jpg">
+          <img
+            src="../BST/22-10-MyResume/assets/img/profile-img.jpg"
+            alt="OMG! Where is my damn picture!"
+            style="border-radius: 50%; max-width: 100%; height: auto"
+          />
+        </a>
+      </div>
+      <!-- == END :  Header Image == -->
+
+      <!-- == BEG :  Header Lines == -->
+      <div
+        id="header-lines"
+        style="display: block; margin-left: 15px; margin-right: auto"
+      >
+      <br>  
+      <h1>This is My Udemy Playground</h1>
+        <br />
+        <em
+          >Creator of the
+          <a
+            href="https://store.steampowered.com/app/1095700/Joyfess_Ep1_Martins_Secret_Recipe/"
+            target="_blank"
+            >Joyfess Game</a
+          ></em
+        >
+        <br />
+        <p>
+          <strong style="color: rgb(70, 21, 2)">Dark chocolate</strong> is my
+          weakness ❤️
+        </p>
+      </div>
+      <!-- == END :  Header Lines == -->
+    </div>
+    <hr />
+    <!-- == BEG :  List == -->
+    <h3>Game Apps</h3>
+    <ul>
+      <li>The Joyfess Game</li>
+      <li>The Library of Arcadia</li>
+    </ul>
+    <!-- == END :  List == -->
+
+    <!-- == BEG :  Table 01 == -->
+    <hr />
+    <h3>Work History</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Dates</th>
+          <th>Work</th>
+        </tr>
+      </thead>
+      <tr>
+        <td>2021 - 2022</td>
+        <td>Cinevva</td>
+      </tr>
+      <tr>
+        <td>2020</td>
+        <td>USF (graduated)</td>
+      </tr>
+    </table>
+
+    <!-- == END :  Table 01 == -->
+
+    <!-- == BEG :  Table 02 == -->
+    <hr />
+    <table>
+      <tr></tr>
+    </table>
+
+    <!-- == END :  Table 02 == -->
+    <h3>Skills</h3>
+    <table>
+          <td>JavaScript</td>
+          <td>⭐⭐⭐⭐</td>
+        </tr>
+        <tr>
+          <td>React</td>
+          <td>⭐⭐</td>
+        </tr>
+        <tr>
+            <td>HTML</td>
+            <td>⭐⭐⭐⭐⭐</td>
+          </tr>
+          <tr>
+            <td>CSS</td>
+            <td>⭐⭐⭐</td>
+          </tr>
+    </table>
+
+    <!-- == BEG :  Contact == -->
+<hr>
+<h3>Contact Me</h3>
+<a href="contact.html" target="_blank">Contact Form</a>
+    <!-- == END :  Contact == -->
+
     <!-- == BEG :  Other Links == -->
     <hr />
     <h3>Other Links</h3>
-    <a href="randomstuff.html">randomstuff</a>
+    <a href="randomstuff.html" target="_blank">randomstuff</a>
     <!-- == END :  Other Links == -->
   </body>
 </html>
