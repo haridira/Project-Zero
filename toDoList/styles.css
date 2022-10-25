@@ -52,14 +52,15 @@ h1 {
 #todo-list {
   padding: none;
   display: inline-block;
-  border: 5px solid #fff;
+  /* commented out border */
+  /*border: 5px solid #fff;*/
 }
 
 #status-bar {
   background-color: #f44336;
   color: white;
   margin: auto;
-  width: 70%;
+  width: 80%;
 
   padding: 3px 12px;
 
@@ -98,7 +99,6 @@ h1 {
 
 .table-class {
   width: 100%;
-  background-color: #ffffff;
   color: #fff;
 }
 
