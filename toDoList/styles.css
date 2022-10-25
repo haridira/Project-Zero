@@ -1,138 +1,136 @@
 * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
 }
 
 em {
-    color: rgb(24, 102, 102);
+  color: rgb(24, 102, 102);
 }
 
 body {
-    display: flex;
-    flex-direction: column;
-    justify-content: none;
-    align-items: center;
-    height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: none;
+  align-items: center;
+  height: 100vh;
+  background-image: url(./img/calc001.jpg);
 }
 
-
 h1 {
-    text-align: center;
+  text-align: center;
 }
 
 .button {
-    background-color: #f44336;
-    color: white;    
-    margin: 7px;
+  background-color: #f44336;
+  color: white;
+  margin: 7px;
 
-    padding: 7px 18px;
+  padding: 7px 18px;
 
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    
-    border: none;
-    font-weight: normal;
-    font-size: 16px;
-    border-radius: 22px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
 
-    transition-duration: 0.2s;
-  }
+  border: none;
+  font-weight: normal;
+  font-size: 16px;
+  border-radius: 22px;
+
+  transition-duration: 0.2s;
+}
 
 .button:hover {
-    background-color: #f81b0b;
-    color: #ffffff;
-    
-    transform: scale(1.1);
-  }
+  background-color: #f81b0b;
+  color: #ffffff;
+
+  transform: scale(1.1);
+}
 
 #todo-list {
-    padding: none;
-    display: inline-block;
-    border: 5px solid #fff;
+  padding: none;
+  display: inline-block;
+  border: 5px solid #fff;
 }
 
 #status-bar {
-    background-color: #f44336;
-    color: white;    
-    margin: auto;
-    width: 400px;
+  background-color: #f44336;
+  color: white;
+  margin: auto;
+  width: 400px;
 
-    padding: 3px 12px;
+  padding: 3px 12px;
 
-    text-align: center;
-    text-decoration: none;
-    
-    
-    border: none;
-    font-weight: normal;
-    font-size: 12px;
-    border-radius: 3px;
+  text-align: center;
+  text-decoration: none;
 
-    transition-duration: 0.3s;
+  border: none;
+  font-weight: normal;
+  font-size: 12px;
+  border-radius: 3px;
+
+  transition-duration: 0.3s;
 }
 
 .center {
-    margin: auto;
-    width: 100%;
-    border: 0px solid transparent;
-    padding: 0px;
+  margin: auto;
+  width: 100%;
+  border: 0px solid transparent;
+  padding: 0px;
 }
 
 .tcell {
-    padding: 3px 22px;
-    background-color: rgb(48, 48, 48);
+  padding: 3px 22px;
+  background-color: rgb(48, 48, 48);
 }
 
 .thead {
-    padding: 3px 22px;
-    background-color: rgb(48, 48, 48);
+  padding: 3px 22px;
+  background-color: rgb(48, 48, 48);
 }
 
 #todo-list {
-    width: 810px;
-    padding: 0px;
+  width: 810px;
+  padding: 0px;
 }
 
 .table-class {
-    width: 100%;
-    background-color: #ffffff;
-    color: #fff;
+  width: 100%;
+  background-color: #ffffff;
+  color: #fff;
 }
 
 .main-container {
-    width: 800px;
-    padding: 5px;
-    display: inline-block;
-    border: 5px solid;
-    border-color: rgb(48, 48, 48);
+  width: 800px;
+  padding: 5px;
+  display: inline-block;
+  border: 5px solid;
+  border-color: rgb(48, 48, 48);
 }
-
-
 
 /* tooltip section */
 .tooltip {
-    position: relative;
-    display: inline-block;
-    border-bottom: 1px dotted black;
-  }
-  
-  .tooltip .tooltiptext {
-    visibility: hidden;
-    width: 320px;
-    background-color: black;
-    color: #fff;
-    text-align: center;
-    border-radius: 6px;
-    padding: 5px 5px;
-  
-    /* position the tooltip */
-    position: absolute;
-    z-index: 1;
-  }
-  
-  .tooltip:hover .tooltiptext {
-    visibility: visible;
-  }
+  position: relative;
+  display: inline-block;
+  border-bottom: 1px dotted black;
+}
+
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 320px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 5px;
+
+  /* position the tooltip */
+  position: absolute;
+  z-index: 1;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+}
