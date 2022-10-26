@@ -47,10 +47,14 @@ h1 {
 }
 
 .button:hover {
+  /* -- used to be used when the button became brighter and larger --
   background-color: #f81b0b;
   color: #ffffff;
+  */
 
-  transform: scale(1.1);
+  background-color: #ffffff;
+  color: #f81b0b;
+  transform: scale(1);
 }
 
 #todo-list {
