@@ -64,6 +64,7 @@ h1 {
   /*border: 5px solid #fff;*/
   width: 800px;
   padding: 0px;
+  max-width: 100%;
 }
 
 .table-class {
