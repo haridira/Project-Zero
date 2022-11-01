@@ -1,0 +1,59 @@
+/* -- GLOBAL -- */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: Georgia;
+}
+
+h1 {
+  width: 100%;
+  text-align: center;
+  padding: 12px;
+  margin: 20px;
+}
+
+.movies {
+  width: 100%;
+  background-color: black;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.image {
+  padding: 15px;
+}
+
+.links {
+  width: 100%;
+  margin-top: 40px;
+  text-align: center;
+}
+
+.hov {
+    color: white;
+    position: relative;
+    display: inline-block;
+    /*
+    border-bottom: 1px dotted white;
+    */
+}
+
+.hov .tooltiptext {
+  visibility: hidden;
+  width: 320px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 5px;
+
+  /* position the tooltip */
+  position: absolute;
+  z-index: 1;
+}
+
+.hov:hover .tooltiptext {
+  visibility: visible;
+}

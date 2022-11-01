@@ -65,7 +65,7 @@ function createTodo(title, dueDate) {
 
 function removeTodo(idToDelete) {
     /*
-    // done the suggested way
+    // done the suggested way I found online
         todos = todos.filter(function(todo) {
             // if the of the todo item maches the id of the HTML elemenet ..
             if (todo.id === idToDelete) {
@@ -111,7 +111,7 @@ render();                                                           // render at
 
 // the add-button
 const addButton = document.getElementById('add-button');
-const BUTTON_TEXT = 'Add To-Do';                                     // create a JS variable for the button text and fill the button with it
+const BUTTON_TEXT = 'Add To-Do';                                    // create a JS variable for the button text and fill the button with it
 addButton.innerText = BUTTON_TEXT;
 
 // the status bar
