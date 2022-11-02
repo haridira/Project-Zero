@@ -55,7 +55,8 @@ function renderImages() {
 }
 
 /*
-// to revert back to - trying the div with image background method
+// a backup of the "safer" way to revert back to
+// above (the new method): trying the div with image background method instead of simple images
 function renderImages() {
   const movieList = document.getElementById("movie-list");
 
