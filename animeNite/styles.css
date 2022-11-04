@@ -40,7 +40,6 @@ h6 {
 @media (max-width: 600px) {
     .image {
       margin: 0px;
-      /*padding: 150px;*/
       width: 100vh;
       min-height: 100vh;
       display: inline-block;
