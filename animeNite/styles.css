@@ -37,7 +37,7 @@ h6 {
   }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 599px) {
     .image {
       margin: 0px;
       width: 100vh;
@@ -50,17 +50,12 @@ h6 {
 
 .links {
   width: 100%;
-  margin-top: 40px;
+  margin: 40px auto 15px;
   text-align: center;
 }
 
 .hov {
-  color: white;
-  position: relative;
-  display: inline-block;
-  /*
-    border-bottom: 1px dotted white;
-    */
+  display: inline;
 }
 
 .hov .tooltiptext {

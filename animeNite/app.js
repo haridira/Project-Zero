@@ -54,34 +54,6 @@ function renderImages() {
   });
 }
 
-/*
-// a backup of the "safer" way to revert back to
-// above (the new method): trying the div with image background method instead of simple images
-function renderImages() {
-  const movieList = document.getElementById("movie-list");
-
-  MOVIES.forEach((movie) => {
-    const movieImage = document.createElement("img");
-    movieImage.src = IMG_PATH_1 + movie.imgFile + IMG_PATH_3;
-    movieImage.alt = movie.imgFile;
-    movieImage.className = "col-lg-2 col-md-4 col-sm-12 image";
-    movieList.appendChild(movieImage);
-
-    const descHover = document.createElement('div');
-    descHover.innerText = '...';
-    descHover.className = "hov";
-    movieList.appendChild(descHover);
-    
-    const description = document.createElement("span");
-    description.className = "tooltiptext";
-    description.innerText = movie.description;
-    descHover.appendChild(description);
-
-    console.log(`${movie.title} added!`);
-  });
-}
-*/
-
 renderImages();
 
 function pollLink() {

@@ -1,0 +1,22 @@
+
+
+.dancemoji {
+    transition: all .4s ease-in-out;
+}
+
+.dancemoji:hover {
+    transform: scale(1.2);
+}
+
+.right-bar {
+    width: 150px;
+    height: 100vh;
+    right: 100px;
+    position: absolute;
+    background-color: aquamarine;
+}
+
+.tile-empty, .dancemoji {
+    height: 10px;
+    margin-top: 20px;
+}
