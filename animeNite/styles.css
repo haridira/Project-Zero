@@ -76,3 +76,12 @@ h6 {
 .hov:hover .tooltiptext {
   visibility: visible;
 }
+
+.map {
+  margin: auto;
+}
+
+.maps {
+  margin: 15px auto;
+  text-align: center;
+}
