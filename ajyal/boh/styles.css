@@ -1,5 +1,9 @@
 * {
     font-family: 'Scheherazade New', serif;
+    line-height: 2;
+    box-sizing: border-box;
+    margin: 1rem;
+    padding: 0;
 }
 
 h1 {
@@ -13,8 +17,11 @@ img {
 
 .eng {
     text-align: left;
+    margin-left: 0;
+    margin-right: auto;
 }
 
 .txt-def {
     margin: 3rem 0;
+    text-align: justify;
 }
