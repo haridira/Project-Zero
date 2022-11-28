@@ -1,0 +1,20 @@
+* {
+    font-family: 'Scheherazade New', serif;
+}
+
+h1 {
+    text-align: center;
+}
+
+img {
+    display: block;
+    margin: auto;
+}
+
+.eng {
+    text-align: left;
+}
+
+.txt-def {
+    margin: 3rem 0;
+}
