@@ -171,9 +171,9 @@ function render() {
         deleteButton.innerText = 'Delete';                          // .. and fill it with text
         deleteButton.className = "button";                          // assign to button class
         //deleteButton.style = 'margin-left: 12px';                 // .. give it some padding (left margin) (COMMENTED OUT because I'm now using table format)
-        deleteButton.onclick = deleteToDo;                          // call the deleteToDo function
+        deleteButton.onclick = deleteToDo;                          // assign the onClick function to the Delete button
         deleteButton.id = todo.id;                                  // assign the delete button its id (we have already added an id in the database - now time to assign the same to the button HTML id so the two can be linked together this way)
-        col3.appendChild(deleteButton);                             // add the button to the line div
+        col3.appendChild(deleteButton);                             // add the button to the cell div
 
         const todoList = document.getElementById('table');
         todoList.appendChild(row);                                  // append the row to the table
@@ -254,7 +254,7 @@ function deleteToDo(event) {
 
     console.log(`Entry with ID # ${idToDelete} deleted!`);                         // for testing only and can be safely deleted any time
 
-    // get the element that WAS deleted and save it into a variable; we're doing this to use it in notifications
+    // get the element that HAS BEEN deleted and save it into a variable; we're doing this to use it in notifications
     let deletedTodo = todos.filter(item => {
         return item.id === idToDelete;
     });

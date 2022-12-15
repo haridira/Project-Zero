@@ -1,0 +1,32 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+.bg {
+    height: 100vh;
+    background-color: rgb(216, 186, 186);
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;  
+}
+
+.balloon {
+    font-size: 10rem;
+    background-color: brown;
+}
+
+.buttons {
+    background-color: aquamarine;
+}
+
+.row {
+    width: 100%;
+    background-color: black;
+}
+
+.row .col-lg-12 {
+    color: #fff;
+}
