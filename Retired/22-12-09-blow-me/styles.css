@@ -4,29 +4,54 @@
     padding: 0;
 }
 
+:root {
+    --balloon-size: 100%;
+    --hue: 200;
+    --saturation: 50%;
+    --lightness: 50%;
+}
+
 .bg {
     height: 100vh;
-    background-color: rgb(216, 186, 186);
+    background-color: hsl(var(--hue), 30%, 10%);
     text-align: center;
+    /* display: flex;
+    align-items: center;
+    justify-content: center;   */
+}
+
+.balloon {
+    font-size: var(--balloon-size);
+    background-color: brown;
     display: flex;
     align-items: center;
     justify-content: center;  
 }
 
-.balloon {
-    font-size: 10rem;
-    background-color: brown;
+.buttons {
+    background-color: #fff;
 }
 
-.buttons {
-    background-color: aquamarine;
+.button {
+    display: block;
+    margin: 20px auto;
 }
 
 .row {
     width: 100%;
     background-color: black;
+    font-size: 1.5rem;
+    margin: 0;
 }
 
 .row .col-lg-12 {
     color: #fff;
+}
+
+.active {
+    display: inline;
+}
+
+.hidden {
+    display: none;
 }
