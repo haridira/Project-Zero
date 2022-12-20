@@ -1,3 +1,6 @@
+
+// (function () {
+
 // == MODEL SECTION ==
 
 // === Model Section: Initial Data ===
@@ -181,13 +184,17 @@ function render() {
 }
 
 // shortly display short-lived update
+// this is the last timer
+let lastStatusUpdateTimer = null;
 function displayShortLivedUpdate(statusSelected, titleAdded) {
+    if (lastStatusUpdateTimer) 
+        clearTimeout(lastStatusUpdateTimer);
+
     updateStatus(statusSelected, titleAdded);
 
-    statusSelected = statusCats[0];
-    setTimeout(() => {
-        updateStatus(statusSelected, titleAdded); 
-     }, 3000);
+    lastStatusUpdateTimer = setTimeout(() => {
+        updateStatus(statusCats[0], titleAdded); 
+     }, 5000);
 }
 
 // update status bar based on selected status
@@ -268,3 +275,5 @@ function deleteToDo(event) {
 
     clearTextBox();
 }
+
+// })();
