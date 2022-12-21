@@ -134,3 +134,28 @@ h2 {
 .pricing-column {
     padding: 3% 2%;
 }
+
+/* cta section */
+
+#cta {
+    background-color: var(--color-main-light);
+    padding: 7% 15%;
+    text-align: center;
+}
+
+#cta h3 {
+    color: #fff;
+    font-weight: bold;
+    font-size: 3.5rem;
+    line-height: 1.5;
+}
+
+/* footer section */
+
+#footer {
+    padding: 7% 15%;
+    text-align: center;
+}
+
+
+/* responsiveness section */
