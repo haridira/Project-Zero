@@ -159,3 +159,18 @@ h2 {
 
 
 /* responsiveness section */
+
+@media (max-width: 1000px) {
+    
+    .title-image {
+        transform: rotate(0);
+        position: static;
+        width: 100%;
+    }
+
+    #title {
+        text-align: center;
+    }
+
+}
+
