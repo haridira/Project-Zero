@@ -23,17 +23,17 @@ function sizeOnClick(event) {
         return;
     }
 
-    if (event.target.id === "shrink-btn" || event.code === "KeyS") {
+    else if (event.target.id === "shrink-btn" || event.key === "s") {
         sizeBelowShresh(balloonSize)                            // change or cap reached
 
-    } else if (event.target.id === "grow-btn" || event.code === "KeyW") {
+    } else if (event.target.id === "grow-btn" || event.key === "w") {
         isItBoomYet(balloonSize);                               // the boom condition
 
         sizeAboveShresh(balloonSize);                           // change or cap reached
 
     } else {
         console.log("Lalalala I'm not listening not listening...!");
-        return;                                                 // ignore ctr
+        return;                                                 // for other keys just print info (ctr is ignored)
     }
     console.log(`Event target ID: ${event.target.id}`);
     balloonSize = balloonSize + changeRate;                     // update balloonSize before re-rendering the balloon
