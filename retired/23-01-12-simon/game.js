@@ -18,6 +18,18 @@ let level = 0;
 let STARTING_TEXT = "Press A Key to Start";
 let GAMEOVER_TEXT = "Game Over!";
 
+function resetLevel() {
+    level = 0;
+}
+
+function resetGamePattern() {
+    gamePattern = [];
+}
+
+function resetUserClickedPattern() {
+    userClickedPattern = [];
+}
+
 // === CONTROLLER SECTION ===
 
 // ## trigger game start
@@ -31,18 +43,6 @@ $(document).keydown((e) => {
     }
 });
 
-function resetLevel() {
-    level = 0;
-}
-
-function resetGamePattern() {
-    gamePattern = [];
-}
-
-function resetUserClickedPattern() {
-    userClickedPattern = [];
-}
-
 // ## onStart
 
 function onStart() {
@@ -51,7 +51,7 @@ function onStart() {
     resetLevel();
     started = false;
     gameOver = false;
-    renderOnStart();
+    renderState();
     console.log("game restarted!");
 }
 
@@ -65,7 +65,10 @@ function nextSequence() {
 
     // increase the level count
     level++;
-    renderLevel(level);
+    renderState();
+    //renderLevel(level);
+    // above: based on a retired function and can be deleted
+    // note date: 06.03.2023
 
     // play visual and sound effects
     $(`#${randomChosenColour}`).fadeIn(100).fadeOut(100).fadeIn(100);
@@ -78,7 +81,7 @@ $(".btn").click( (e) => {
     let userChosenColour = e.target.id;
     console.log(`New color added: ${userChosenColour}`);                                    // a testing line - SAFE to remove
     userClickedPattern.push(userChosenColour);
-    console.log(`New Player pattern: ${userClickedPattern}`);                                                        // a testing line - SAFE to remove
+    console.log(`New Player pattern: ${userClickedPattern}`);                               // a testing line - SAFE to remove
 
     // play visual and sound effects
     animatePress(userChosenColour);
@@ -86,23 +89,21 @@ $(".btn").click( (e) => {
 
     checkAnswer(userClickedPattern.length - 1);
 
-    if (userClickedPattern.length === gamePattern.length && gameOver === false) {
+    if (gameOver === true) {
+        playSound("wrong");
+        renderState();                                                                    // intentionally placed here twice: this first time to render "Game Over!""
+        setTimeout(onStart, 1000);
+    } else if (userClickedPattern.length === gamePattern.length) {
         userClickedPattern = [];
         setTimeout(nextSequence, 250)
-        //nextSequence();
-    }   else if (gameOver === true) {
-        renderOnStart();
-        playSound("wrong");
-        renderWrong();
-        setTimeout(onStart, 1000);
     }
 });
 
 function checkAnswer(currentLevel) {
     if (userClickedPattern[currentLevel] === gamePattern[currentLevel]) {
-        console.log("Success!");
+        console.log("Success!");                                                            // a testing line - SAFE to remove
     } else {
-        console.log("Game Over!");
+        console.log("Game Over!");                                                          // a testing line - SAFE to remove
         gameOver = true;
     }
 }
@@ -116,35 +117,33 @@ function playSound(name) {
 }
 
 // ## visual effects
-function animatePress(currentColor) {
-    // below (the animation effect): removed and replaced with using classes, instead
-    // my guess is that the classes method is cleaner
-    // because it better adheres to the concept of separation of concerns
-    //$(`#${currentColor}`).fadeIn(100).fadeOut(100).fadeIn(100);
+function animatePress(currentColor) {                                                       // visual effect through adding and removing classes
     $(`#${currentColor}`).addClass("pressed");
-    console.log(`${currentColor} added`);                                                   // a testing line - SAFE to remove
     setTimeout(() => {
         $(`#${currentColor}`).removeClass("pressed");
     }, 100);
 }
 
+/*
+// renderLevel has been retired when I converted the field into a state field
+// now the new function renderState() is all encompassing
+// and based on the current states it's going to know what to display
+// note date: 06.03.2023
 function renderLevel(level) {
     $("#level-title").text(`Level ${level}`);
 }
+*/
 
-function renderOnStart() {
-    if (!gameOver) {
-        $("#level-title").text(STARTING_TEXT);
-    } else if (gameOver) {
+function renderState() {
+    if (gameOver) {
         $("#level-title").text(GAMEOVER_TEXT);
+    } else if (!started) {
+        $("#level-title").text(STARTING_TEXT);
+    } else if (!gameOver && started) {
+        $("#level-title").text(`Level ${level}`);
     } else {
         $("#level-title").text("UNEXPECTED!");
     }
-}
-
-function renderWrong() {
-    $("body").addClass("game-over");
-    setTimeout(() => $("body").removeClass("game-over"), 200);
 }
 
 // === REMOVED ===
