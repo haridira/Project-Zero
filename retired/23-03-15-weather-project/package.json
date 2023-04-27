@@ -1,0 +1,17 @@
+{
+  "name": "weather-project",
+  "version": "1.0.0",
+  "description": "to test making a get request",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "weather"
+  ],
+  "author": "haridira",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
