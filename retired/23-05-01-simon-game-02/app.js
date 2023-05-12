@@ -6,8 +6,44 @@
 const gamePattern = [];
 const playerPattern = [];
 
-CLICK_FLICKER_TIME_OUT = 100;
+const CLICK_FLICKER_TIME_OUT = 120;
 
+const PATTERN_PALLET = ["red", "blue", "green", "yellow"];
+
+
+// == Status Text ==
+
+const STATUS_DEF = "Press any key to start";
+const STATUS_LEVEL = "Press any key to start";
+const STATUS_LOST = "Press any key to start";
+
+// == Data Section - Functions ==
+
+// random index to randomly pick from the predefined pallet
+function generateRandomIndex() {
+    let palletLength = PATTERN_PALLET.length;
+    let randomIndex = Math.floor(Math.random()*palletLength);
+    return randomIndex;
+}
+
+// randomly pick the color from the predefined pallet
+function generateRandomColor() {
+    let randomColor = "";
+    let randomIndex = generateRandomIndex();
+    randomColor = PATTERN_PALLET[randomIndex];
+    return randomColor;
+}
+
+// push that randomly picked color to the pattern array
+function addColorPattern() {
+    let randomColor = generateRandomColor();
+    gamePattern.push(randomColor);
+}
+
+// TESTING ONLY
+let randomColor = generateRandomColor();
+console.log(`and today's random color isssss ${generateRandomColor}!!`);
+// END OF TESTING SPACE
 
 // === CONTROLLER ===
 
@@ -23,6 +59,12 @@ $(".button").on("click", function() {
     activateButton(color);
 });
 
+// function of pattern addition
+function patternAdd() {
+    let randomColor = generateRandomColor();
+    gamePattern.push(randomColor);
+    activateButton(randomColor);                                // the flicker effect
+}
 
 // === VIEW ===
 

@@ -2,18 +2,25 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    background-color: var(--color-fall);
     font-family: sans-serif;
 }
 
+body {
+    background-color: var(--color-fall);
+}
+
 :root {
-    --main-opacity: 0.85;
+    --main-opacity: 0.65;
     --clicked-opacity: 1;
     --color-purple: #7074B3;
-    --color-fall: #ecdc95;
+    --color-fall: #c9bd81;
   }
 
-h1 {
+h6 {
+    margin: 6px;
+}
+  
+.title {
     background-color: var(--color-purple);
     text-align: center;
     color: aliceblue;
