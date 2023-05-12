@@ -1,0 +1,153 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    background-color: var(--color-fall);
+    font-family: sans-serif;
+}
+
+:root {
+    --main-opacity: 0.85;
+    --clicked-opacity: 1;
+    --color-purple: #7074B3;
+    --color-fall: #ecdc95;
+  }
+
+h1 {
+    background-color: var(--color-purple);
+    text-align: center;
+    color: aliceblue;
+    width: 550px;
+    max-width: 90vw;
+    margin: 20px auto;
+    padding: 8px;
+    border-radius: 8px;
+}
+
+.container {
+    background-color: white;
+    display: flex;
+    border-radius: 18px;
+    max-width: 290px;
+    margin: auto;
+    padding: 30px;
+    gap: 30px;
+    justify-content: center;
+}
+
+.container.column {
+    padding: 0;
+    flex-direction: column;
+}
+
+.container.row {
+    padding: 0;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.item {
+    width: 100px;
+    height: 100px;
+    border-radius: 10px;
+    text-align: center;
+    font-size: 2rem;
+    color: white;
+}
+
+.item:hover {
+    opacity: 0.5;
+}
+
+/* .item:active {
+    opacity: var(--clicked-opacity);
+} */
+
+.red {
+    background-color: #db0909;
+}
+
+.blue {
+    background-color: rgb(0, 183, 255);
+    
+}
+
+.green {
+    background-color: #08c211;
+}
+
+.yellow {
+    background-color: rgb(240, 240, 1);
+}
+
+.opacity-def {
+    opacity: var(--main-opacity);
+}
+
+.opacity-active {
+    /* this is to deactivate the hovering effect while the flicker effect is being played (below) */
+    pointer-events: none;
+    opacity: var(--clicked-opacity);
+}
+
+
+h3 {
+    width: fit-content;
+    text-align: center;
+    align-items: center;
+    font-size: 4rem;
+    background-color: var(--color-purple);
+    color: azure;
+    border-radius: 7px;
+    padding: 1px 25px;
+    margin: 30px auto;
+}
+
+/* === TOOLTIP=== */
+
+.tooltip {
+    position: relative;
+    /* display: inline-block; */
+  }
+
+/* Tooltip text */
+.tooltip .tooltiptext {
+    top: -5px;
+    left: 67%;
+    font-size: 1rem;
+    visibility: hidden;
+    width: 180px;
+    opacity: 0.7;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    padding: 5px 0;
+    border-radius: 6px;
+    position: absolute;
+    z-index: 1;
+  }
+  
+  .tooltip:hover .tooltiptext {
+    visibility: visible;
+  }
+
+
+
+
+/*
+==== TRASH BIN ====
+
+=== GRID ===
+.container {
+    margin: auto;
+    height: 240px;
+    width: 240px;
+    background-color: white;
+    justify-content: space-evenly;
+    align-content: space-evenly;
+    display: grid;
+    border-radius: 15px;
+    grid-template-columns: 100px 100px;
+    grid-template-rows: 100px 100px;
+}
+*/
