@@ -10,10 +10,11 @@ body {
 }
 
 :root {
-    --main-opacity: 0.65;
-    --clicked-opacity: 1;
+    --opacity-main: 0.75;
+    --opacity-hover: 0.45;
+    --opacity-clicked: 1;
     --color-purple: #7074B3;
-    --color-fall: #c9bd81;
+    --color-fall: #f1edd8;
   }
 
 h6 {
@@ -56,14 +57,19 @@ h6 {
 .item {
     width: 100px;
     height: 100px;
+
+    /* to center the text */
+    line-height: 100px;
+    text-align: center;
+
     border-radius: 10px;
     text-align: center;
     font-size: 2rem;
-    color: white;
+    color: rgba(255, 255, 255, 0);
 }
 
 .item:hover {
-    opacity: 0.5;
+    opacity: var(--opacity-hover);
 }
 
 /*
@@ -91,13 +97,16 @@ h6 {
 }
 
 .opacity-def {
-    opacity: var(--main-opacity);
+    opacity: var(--opacity-main);
 }
 
 .opacity-active {
     /* this is to deactivate the hovering effect while the flicker effect is being played (below) */
     pointer-events: none;
-    opacity: var(--clicked-opacity);
+    opacity: var(--opacity-clicked);
+    border: rgba(146, 0, 0, 0.548);
+    border-style: solid;
+    border-width: 3px;
 }
 
 

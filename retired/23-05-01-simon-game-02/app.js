@@ -1,23 +1,32 @@
 
-
-
 // === DATA ===
 
-const gamePattern = [];
-const playerPattern = [];
+let gamePattern = [];
+let playerPattern = [];
 
-const CLICK_FLICKER_TIME_OUT = 120;
+let level = 0;
+let playerCounter = 0;
+
+const CLICK_FLICKER_TIME_OUT = 130;
 
 const PATTERN_PALLET = ["red", "blue", "green", "yellow"];
 
+let gameOver = false;
+let gameStarted = false;
 
 // == Status Text ==
 
 const STATUS_DEF = "Press any key to start";
-const STATUS_LEVEL = "Press any key to start";
-const STATUS_LOST = "Press any key to start";
+const STATUS_LOST = "Game Over!";
+const STATUS_LEVEL = "Level: ";
 
 // == Data Section - Functions ==
+
+// refresh player status for a new round/ level
+function refreshPlayerRound() {
+    playerCounter = 0;
+    playerPattern = [];
+}
 
 // random index to randomly pick from the predefined pallet
 function generateRandomIndex() {
@@ -34,36 +43,76 @@ function generateRandomColor() {
     return randomColor;
 }
 
-// push that randomly picked color to the pattern array
-function addColorPattern() {
-    let randomColor = generateRandomColor();
-    gamePattern.push(randomColor);
-}
-
-// TESTING ONLY
-let randomColor = generateRandomColor();
-console.log(`and today's random color isssss ${generateRandomColor}!!`);
-// END OF TESTING SPACE
-
 // === CONTROLLER ===
 
 // set values on start
 function onStart() {
     $(".item").addClass("opacity-def");
+    level = 0;
+    playerCounter = 0;
+    gamePattern = [];
+    playerPattern = [];
+    gameOver = false;
+
+    // TEMP: DELETE this after testing
+    gameStarted = true;
+
+    // ALSO below need to be moved as they happen once the player clicks a key to start
+    patternAdd();
+    renderState();
 }
 
 // player clicks on one the color buttons
 $(".button").on("click", function() {
     let color = $( this ).attr('id');                           // define the color variable to use it in coming functions
-    logSuccess(color);                                          // TEST LOG
-    activateButton(color);
+    flashButton(color, CLICK_FLICKER_TIME_OUT);                 // visual effect
+    playerPattern.push(color);                                  // add the clicked color to the player pattern
+
+    // update status
+    gameOver = isGameOver(playerCounter);
+
+    if (!gameStarted) {
+        return;
+    } else if (gameOver) {
+        renderState();
+        onStart();
+    } else if (!gameOver && playerCounter + 1 === level) {
+        refreshPlayerRound();
+        patternAdd();
+    } else if (!gameOver) {
+        playerCounter++;
+    } else {
+        console.log("UNEXPECTED at player click");
+    }
+
+    renderState();
 });
 
 // function of pattern addition
 function patternAdd() {
-    let randomColor = generateRandomColor();
+    let randomColor = generateRandomColor();                    // generate a random color and add it to the game pattern
     gamePattern.push(randomColor);
-    activateButton(randomColor);                                // the flicker effect
+    //flashButton(randomColor);                                 // the flicker effect
+
+    setTimeout( () => {
+        flashMultiple(flashButton, randomColor, CLICK_FLICKER_TIME_OUT * 2, 1)
+    }, 250);
+
+    // increment level
+    level++;
+
+    console.log(`random color is: ${randomColor}`);             // TEST LOG
+}
+
+// update game status - is it fail yet?
+function isGameOver(playerCounter) {
+    let gameOver = false;
+    if (gamePattern[playerCounter] === playerPattern[playerCounter]) {
+        gameOver = false;
+    } else {
+        gameOver = true;
+    }
+    return gameOver;
 }
 
 // === VIEW ===
@@ -71,17 +120,42 @@ function patternAdd() {
 onStart();
 
 // flicker effect
-function activateButton(color) {
+function flashButton(color, waitTime) {
     $(`#${color}`).removeClass("opacity-def");
     $(`#${color}`).addClass("opacity-active");
     setTimeout( () => {
         $(`#${color}`).removeClass("opacity-active");
         $(`#${color}`).addClass("opacity-def");
-    }, CLICK_FLICKER_TIME_OUT);
+    }, waitTime);
     }
     
-    
-   
+function renderState() {
+    if (gameOver && gameStarted) {
+        $("#status").text(STATUS_LOST);
+    } else if (!gameOver && gameStarted) {
+        $("#status").text(STATUS_LEVEL + level);
+    }
+}
+
+function flashMultiple(flickerFunction, color, waitTime, noFlashes) {
+
+    for (i = 0; i < noFlashes * waitTime; i = i + waitTime) {
+        setTimeout( () => {
+            flickerFunction(color, waitTime / 2)
+        } , i);
+    }
+}
+
+
+/*
+deprecated: code below is unneeded and kept only for reference on how to use the (e) => function with .on("click")
+
+// onClick but using the event as input to target button id
+$(".blue").on("click", (e) => {
+    let color = e.target.id;
+    logSuccess(color);
+    // e.target.innerHTML = "6"
+});
 
 
 // TEST LOG: confirm that the correct button has been clicked
@@ -89,15 +163,4 @@ function logSuccess(color) {
     console.log(`Button with the ${color} color just clicked!`);
 }
 
-
-
-
-
-// deprecated: code below is unneeded and kept only for reference on how to use the (e) => function with .on("click")
-
-// $(".blue").on("click", (e) => {
-//     let color = e.target.id;
-//     logSuccess(color);
-//     // e.target.innerHTML = "6"
-// });
-
+*/
