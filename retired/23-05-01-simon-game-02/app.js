@@ -8,6 +8,8 @@ let level = 0;
 let playerCounter = 0;
 
 const CLICK_FLICKER_TIME_OUT = 130;
+const fadeTime = 110;
+let isPatternFlicker = false;
 
 const PATTERN_PALLET = ["red", "blue", "green", "yellow"];
 
@@ -65,7 +67,7 @@ function onStart() {
 // player clicks on one the color buttons
 $(".button").on("click", function() {
     let color = $( this ).attr('id');                           // define the color variable to use it in coming functions
-    flashButton(color, CLICK_FLICKER_TIME_OUT);                 // visual effect
+    flickerOnClick(color);                                      // visual effect
     playerPattern.push(color);                                  // add the clicked color to the player pattern
 
     // update status
@@ -92,11 +94,10 @@ $(".button").on("click", function() {
 function patternAdd() {
     let randomColor = generateRandomColor();                    // generate a random color and add it to the game pattern
     gamePattern.push(randomColor);
-    //flashButton(randomColor);                                 // the flicker effect
 
     setTimeout( () => {
-        flashMultiple(flashButton, randomColor, CLICK_FLICKER_TIME_OUT * 2, 1)
-    }, 250);
+        flashButton(randomColor, CLICK_FLICKER_TIME_OUT * 2)
+    }, 200);
 
     // increment level
     level++;
@@ -123,26 +124,32 @@ onStart();
 function flashButton(color, waitTime) {
     $(`#${color}`).removeClass("opacity-def");
     $(`#${color}`).addClass("opacity-active");
+    $(`#${color}`).addClass("border-click");
     setTimeout( () => {
         $(`#${color}`).removeClass("opacity-active");
         $(`#${color}`).addClass("opacity-def");
+        $(`#${color}`).removeClass("border-click");
     }, waitTime);
-    }
-    
-function renderState() {
-    if (gameOver && gameStarted) {
-        $("#status").text(STATUS_LOST);
-    } else if (!gameOver && gameStarted) {
-        $("#status").text(STATUS_LEVEL + level);
-    }
 }
-
+    
 function flashMultiple(flickerFunction, color, waitTime, noFlashes) {
 
     for (i = 0; i < noFlashes * waitTime; i = i + waitTime) {
         setTimeout( () => {
             flickerFunction(color, waitTime / 2)
         } , i);
+    }
+}
+    
+function flickerOnClick(color) {
+    $(`#${color}`).fadeIn(fadeTime).fadeOut(fadeTime).fadeIn(fadeTime)
+}
+
+function renderState() {
+    if (gameOver && gameStarted) {
+        $("#status").text(STATUS_LOST);
+    } else if (!gameOver && gameStarted) {
+        $("#status").text(STATUS_LEVEL + level);
     }
 }
 

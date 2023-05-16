@@ -104,11 +104,13 @@ h6 {
     /* this is to deactivate the hovering effect while the flicker effect is being played (below) */
     pointer-events: none;
     opacity: var(--opacity-clicked);
+}
+
+.border-click {
     border: rgba(146, 0, 0, 0.548);
     border-style: solid;
     border-width: 3px;
 }
-
 
 h3 {
     width: fit-content;
