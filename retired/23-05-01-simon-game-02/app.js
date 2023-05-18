@@ -76,6 +76,7 @@ $(".button").on("click", function() {
     if (!gameStarted) {
         return;
     } else if (gameOver) {
+        console.log("Game over!");                              // TEST LOG
         renderState();
         onStart();
     } else if (!gameOver && playerCounter + 1 === level) {
@@ -97,7 +98,7 @@ function patternAdd() {
 
     setTimeout( () => {
         flashButton(randomColor, CLICK_FLICKER_TIME_OUT * 2)
-    }, 200);
+    }, 230);
 
     // increment level
     level++;
