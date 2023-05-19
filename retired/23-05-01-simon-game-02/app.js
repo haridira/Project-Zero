@@ -89,6 +89,9 @@ function onStart() {
 
 // player clicks on one the color buttons
 $(".button").on("click", function() {
+    if (!gameStarted) {
+        return;
+    }
     let color = $( this ).attr('id');                           // define the color variable to use it in coming functions
     flickerOnClick(color);                                      // visual effect
     playerPattern.push(color);                                  // add the clicked color to the player pattern
