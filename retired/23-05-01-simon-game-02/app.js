@@ -48,14 +48,30 @@ function generateRandomColor() {
 // === CONTROLLER ===
 
 // ## trigger game start
+
+function startGame() {
+    gameStarted = true;
+    gameOver = false;
+    patternAdd();
+}
+
 $(document).keydown((e) => {
     if (e.key === "Control") {
         return;
     }
     if (!gameStarted) {
-        gameStarted = true;
-        gameOver = false;
-        patternAdd();
+        startGame();
+    }
+});
+
+// the cell-phone start button
+$("#start-button").on("click", function() {
+    if (gameStarted) {
+        return;
+    } else {
+        flickerOnClick("start-button");
+        startGame();
+        $( this ).addClass("no-hover");
     }
 });
 
@@ -67,6 +83,7 @@ function onStart() {
     gamePattern = [];
     playerPattern = [];
     gameStarted = false;
+    $("#start-button").removeClass("no-hover");
     renderState();
 }
 

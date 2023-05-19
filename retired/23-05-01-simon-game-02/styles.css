@@ -15,10 +15,12 @@ body {
     --opacity-clicked: 1;
     --color-purple: #7074B3;
     --color-fall: #f1edd8;
+    --color-button: #1d1f3a;
   }
 
 h6 {
     margin: 6px;
+    color: aliceblue;
 }
   
 .title {
@@ -151,8 +153,31 @@ h3 {
     visibility: visible;
   }
 
+#start-button {
+    background-color: var(--color-button);
+    padding: 2px 12px;
+    display: inline-block;
+    border-radius: 5px;
+    opacity: var(--opacity-main);
 
+	border: none;
+	cursor: pointer;
 
+    user-select: none;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    -o-user-select: none;
+}
+
+#start-button:hover {
+    opacity: var(--opacity-hover);
+}
+
+/* class used to disable hovering effects */
+.no-hover{
+    pointer-events: none;
+}
 
 /*
 ==== TRASH BIN ====
