@@ -18,8 +18,8 @@ let gameStarted = false;
 
 // == Status Text ==
 
-const STATUS_DEF = "Press any key to start";
-const STATUS_LOST = "Game Over!";
+const STATUS_START = "Press any key to start";
+const STATUS_LOST = "Game Over! (Press any key to start over)";
 const STATUS_LEVEL = "Level: ";
 
 // == Data Section - Functions ==
@@ -47,6 +47,18 @@ function generateRandomColor() {
 
 // === CONTROLLER ===
 
+// ## trigger game start
+$(document).keydown((e) => {
+    if (e.key === "Control") {
+        return;
+    }
+    if (!gameStarted) {
+        gameStarted = true;
+        gameOver = false;
+        patternAdd();
+    }
+});
+
 // set values on start
 function onStart() {
     $(".item").addClass("opacity-def");
@@ -54,13 +66,7 @@ function onStart() {
     playerCounter = 0;
     gamePattern = [];
     playerPattern = [];
-    gameOver = false;
-
-    // TEMP: DELETE this after testing
-    gameStarted = true;
-
-    // ALSO below need to be moved as they happen once the player clicks a key to start
-    patternAdd();
+    gameStarted = false;
     renderState();
 }
 
@@ -104,6 +110,7 @@ function patternAdd() {
     level++;
 
     console.log(`random color is: ${randomColor}`);             // TEST LOG
+    renderState(level);
 }
 
 // update game status - is it fail yet?
@@ -147,10 +154,14 @@ function flickerOnClick(color) {
 }
 
 function renderState() {
-    if (gameOver && gameStarted) {
+    if (gameOver) {
         $("#status").text(STATUS_LOST);
     } else if (!gameOver && gameStarted) {
         $("#status").text(STATUS_LEVEL + level);
+    } else if (!gameStarted) {
+        $("#status").text(STATUS_START);
+    } else {
+        $("#status").text("UNEXPECTED");
     }
 }
 
