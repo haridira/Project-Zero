@@ -45,7 +45,6 @@ h6 {
 .gear {
     align-items: center;
     background-color: var(--color-purple);
-    margin-top: 70px;
     letter-spacing: .5rem;
 }
 
