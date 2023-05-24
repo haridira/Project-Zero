@@ -1,6 +1,4 @@
 
-// ===== The version I went over with Orwa =====
-
 // === DATA ===
 
 let gamePattern = [];
