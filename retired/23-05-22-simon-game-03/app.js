@@ -5,7 +5,6 @@ let gamePattern = [];
 let playerPattern = [];
 
 let level = 0;
-let playerCounter = 0;
 
 const CLICK_FLICKER_TIME_OUT = 130;
 const fadeTime = 110;
@@ -26,24 +25,12 @@ const STATUS_LEVEL = "Level: ";
 
 // refresh player status for a new round/ level
 function refreshPlayerRound() {
-    playerCounter = 0;
     playerPattern = [];
 }
 
-// random index to randomly pick from the predefined pallet
-function generateRandomIndex() {
-    let palletLength = PATTERN_PALLET.length;
-    let randomIndex = Math.floor(Math.random()*palletLength);
-    return randomIndex;
-}
-
 // randomly pick the color from the predefined pallet
-function generateRandomColor() {
-    let randomColor = "";
-    let randomIndex = generateRandomIndex();
-    randomColor = PATTERN_PALLET[randomIndex];
-    return randomColor;
-}
+const generateRandomColor = () =>
+    PATTERN_PALLET[Math.floor(Math.random()*PATTERN_PALLET.length)]
 
 // === CONTROLLER ===
 
@@ -79,7 +66,6 @@ $("#start-button").on("click", function() {
 function onStart() {
     $(".item").addClass("opacity-def");
     level = 0;
-    playerCounter = 0;
     gamePattern = [];
     playerPattern = [];
     gameStarted = false;
@@ -97,7 +83,7 @@ $(".button").on("click", function() {
     playerPattern.push(color);                                  // add the clicked color to the player pattern
 
     // update status
-    gameOver = isGameOver(playerCounter);
+    gameOver = isGameOver();
 
     if (!gameStarted) {
         return;
@@ -105,13 +91,9 @@ $(".button").on("click", function() {
         console.log("Game over!");                              // TEST LOG
         renderState();
         onStart();
-    } else if (!gameOver && playerCounter + 1 === level) {
+    } else if (playerPattern.length === gamePattern.length) {
         refreshPlayerRound();
         patternAdd();
-    } else if (!gameOver) {
-        playerCounter++;
-    } else {
-        console.log("UNEXPECTED at player click");
     }
 
     renderState();
@@ -134,9 +116,10 @@ function patternAdd() {
 }
 
 // update game status - is it fail yet?
-function isGameOver(playerCounter) {
+function isGameOver() {
     let gameOver = false;
-    if (gamePattern[playerCounter] === playerPattern[playerCounter]) {
+    const index = playerPattern.length - 1;
+    if (gamePattern[index] === playerPattern[index]) {
         gameOver = false;
     } else {
         gameOver = true;
