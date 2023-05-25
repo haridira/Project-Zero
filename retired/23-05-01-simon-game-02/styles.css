@@ -33,7 +33,7 @@ body {
 
 @media (max-width: 950px) {
     .title, .gear {
-        width: var(--title-width);
+        width: var(--max-width);
         border-radius: var(--border-radius);
         text-align: center;
         max-width: var(--max-width);
