@@ -19,7 +19,7 @@ body {
     --color-fall: #f1efe3;
     --color-button: #1d1f3a;
     --title-width: 550px;
-    --max-width: 90vw;
+    --max-width: calc(100vw - 1.5rem);
     --border-radius: 8px;
     --item-length-big: 160px;
     --item-length-small: 100px;
@@ -37,7 +37,7 @@ body {
         border-radius: var(--border-radius);
         text-align: center;
         max-width: var(--max-width);
-        margin: 30px auto;
+        margin: 1.5rem auto;
         padding: 12px;
     }
 
@@ -148,7 +148,7 @@ body {
     cursor: pointer;
 }
 
-.item:hover {
+.item:hover, #start-button:hover {
     opacity: var(--opacity-hover);
 }
 
@@ -232,10 +232,6 @@ body {
     -khtml-user-select: none;
     -webkit-user-select: none;
     -o-user-select: none;
-}
-
-#start-button:hover {
-    opacity: var(--opacity-hover);
 }
 
 /* class used to disable hovering effects */
