@@ -5,34 +5,32 @@ let gamePattern = [];
 let playerPattern = [];
 
 let level = 0;
-let playerCounter = 0;
 
-const CLICK_FLICKER_TIME_OUT = 130;
+const clickFlickerTimeOut = 130;
 const fadeTime = 110;
 let isPatternFlicker = false;
 
-const PATTERN_PALLET = ["red", "blue", "green", "yellow"];
+const colorSet = ["red", "blue", "green", "yellow"];
 
 let gameOver = false;
 let gameStarted = false;
 
 // == Status Text ==
 
-const STATUS_START = "Press any key to start";
-const STATUS_LOST = "Game Over! (Press any key to start over)";
-const STATUS_LEVEL = "Level: ";
+const statusStart = "Start!";
+const statusLost = "Game Over! (Restart)";
+const statusLevel = "Level: ";
 
 // == Data Section - Functions ==
 
 // refresh player status for a new round/ level
 function refreshPlayerRound() {
-    playerCounter = 0;
     playerPattern = [];
 }
 
 // random index to randomly pick from the predefined pallet
 function generateRandomIndex() {
-    let palletLength = PATTERN_PALLET.length;
+    let palletLength = colorSet.length;
     let randomIndex = Math.floor(Math.random()*palletLength);
     return randomIndex;
 }
@@ -41,7 +39,7 @@ function generateRandomIndex() {
 function generateRandomColor() {
     let randomColor = "";
     let randomIndex = generateRandomIndex();
-    randomColor = PATTERN_PALLET[randomIndex];
+    randomColor = colorSet[randomIndex];
     return randomColor;
 }
 
@@ -55,6 +53,8 @@ function startGame() {
     patternAdd();
 }
 
+/*
+// use keyboard to start game (deactivated)
 $(document).keydown((e) => {
     if (e.key === "Control") {
         return;
@@ -63,13 +63,14 @@ $(document).keydown((e) => {
         startGame();
     }
 });
+*/
 
 // the cell-phone start button
-$("#start-button").on("click", function() {
+$("#status").on("click", function() {
     if (gameStarted) {
         return;
     } else {
-        flickerOnClick("start-button");
+        flickerOnClick("status");
         startGame();
         $( this ).addClass("no-hover");
     }
@@ -79,12 +80,11 @@ $("#start-button").on("click", function() {
 function onStart() {
     $(".item").addClass("opacity-def");
     level = 0;
-    playerCounter = 0;
     gamePattern = [];
     playerPattern = [];
     gameStarted = false;
-    $("#start-button").removeClass("no-hover");
-    renderState();
+    $("#status").removeClass("no-hover");
+    renderStatus();
 }
 
 // player clicks on one the color buttons
@@ -97,24 +97,20 @@ $(".button").on("click", function() {
     playerPattern.push(color);                                  // add the clicked color to the player pattern
 
     // update status
-    gameOver = isGameOver(playerCounter);
+    gameOver = isGameOver();
 
     if (!gameStarted) {
         return;
     } else if (gameOver) {
         console.log("Game over!");                              // TEST LOG
-        renderState();
+        renderStatus();
         onStart();
-    } else if (!gameOver && playerCounter + 1 === level) {
+    } else if (playerPattern.length === level) {
         refreshPlayerRound();
         patternAdd();
-    } else if (!gameOver) {
-        playerCounter++;
-    } else {
-        console.log("UNEXPECTED at player click");
     }
 
-    renderState();
+    renderStatus();
 });
 
 // function of pattern addition
@@ -123,20 +119,21 @@ function patternAdd() {
     gamePattern.push(randomColor);
 
     setTimeout( () => {
-        flashButton(randomColor, CLICK_FLICKER_TIME_OUT * 2)
+        flashButton(randomColor, clickFlickerTimeOut * 2)
     }, 230);
 
     // increment level
     level++;
 
     console.log(`random color is: ${randomColor}`);             // TEST LOG
-    renderState(level);
+    renderStatus(level);
 }
 
 // update game status - is it fail yet?
-function isGameOver(playerCounter) {
+function isGameOver() {
     let gameOver = false;
-    if (gamePattern[playerCounter] === playerPattern[playerCounter]) {
+    const index = playerPattern.length - 1;
+    if (gamePattern[index] === playerPattern[index]) {
         gameOver = false;
     } else {
         gameOver = true;
@@ -173,15 +170,13 @@ function flickerOnClick(color) {
     $(`#${color}`).fadeIn(fadeTime).fadeOut(fadeTime).fadeIn(fadeTime)
 }
 
-function renderState() {
+function renderStatus() {
     if (gameOver) {
-        $("#status").text(STATUS_LOST);
-    } else if (!gameOver && gameStarted) {
-        $("#status").text(STATUS_LEVEL + level);
-    } else if (!gameStarted) {
-        $("#status").text(STATUS_START);
+        $("#status-text").text(statusLost);
+    } else if (gameStarted) {
+        $("#status-text").text(statusLevel + level);
     } else {
-        $("#status").text("UNEXPECTED");
+        $("#status-text").text(statusStart);
     }
 }
 

@@ -19,7 +19,7 @@ body {
     --color-fall: #f1efe3;
     --color-button: #1d1f3a;
     --title-width: 550px;
-    --max-width: calc(100vw - 1.5rem);
+    --max-width: calc(100% - 1.5rem);
     --border-radius: 8px;
     --item-length-big: 160px;
     --item-length-small: 100px;
@@ -75,15 +75,12 @@ body {
     
     h6 {
         font-size: 0.7rem;
-        margin: 6px;
     }
 
-    .border-click {
-        border-width: 3px;
-    }
-
-    #start-button {
-        padding: 0.1rem 0.8rem;
+    #status {
+        margin: 0.5rem 0;
+        width: 13rem;
+        padding: 0.3rem 0.3rem;
     }
 
 }
@@ -123,15 +120,11 @@ body {
 
     h6 {
         font-size: 1.5rem;
-        margin: 12px;
     }
 
-    .border-click {
-        border-width: 6px;
-    }
-
-    #start-button {
-        padding: 0.1rem 2rem;
+    #status {
+        width: 20rem;
+        padding: 0.8rem 2rem;
     }
 
 }
@@ -155,11 +148,11 @@ body {
     flex-wrap: wrap;
 }
 
-.item, #start-button {
+.item, #status {
     cursor: pointer;
 }
 
-.item:hover, #start-button:hover {
+.item:hover, #status:hover {
     opacity: var(--opacity-hover);
 }
 
@@ -200,6 +193,7 @@ body {
 .border-click {
     border: rgba(146, 0, 0, 0.548);
     border-style: solid;
+    border-width: 0.25rem;
 }
 
 /* === TOOLTIP=== */
@@ -230,11 +224,13 @@ body {
     visibility: visible;
   }
 
-#start-button {
+#status {
     background-color: var(--color-button);
     display: inline-block;
     border-radius: var(--border-radius);
     opacity: var(--opacity-main);
+    max-width: var(--max-width);
+
 
 	border: none;
 
